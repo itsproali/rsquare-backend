@@ -1,5 +1,4 @@
-const { getTest } = require("../controllers/test.controller");
-
+const { signup, login } = require("../controllers/userController");
 const router = require("express").Router();
 
 router
@@ -15,6 +14,7 @@ router
    * @apiError {Object} status = 400 {success: false, }
    */
 
-.get("/", getTest);
+  .post("/signup", signup)
+  .post("/login", login);
 
 module.exports = router;

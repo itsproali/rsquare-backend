@@ -1,14 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const testRoute = require("./routes/test.route");
+const userRoute = require("./routes/userRoute");
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api/v1/test", testRoute);
+app.use("/user", userRoute);
 
 // Default Route
 app.get("/", (req, res) => {
