@@ -11,6 +11,7 @@ app.use(express.json());
 // Routes
 app.use("/user", userRoute);
 app.use("/image", imageRoute);
+app.use("/images", express.static(__dirname + "/images/"));
 
 // Default Route
 app.get("/", (req, res) => {
@@ -19,7 +20,7 @@ app.get("/", (req, res) => {
 
 // Not Found Route
 app.get("*", (req, res) => {
-  res.send(404).send({ message: "Route Not Found" });
+  res.sendStatus(404).send({ message: "Route Not Found" });
 });
 
 module.exports = app;
