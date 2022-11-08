@@ -11,7 +11,6 @@ exports.signup = async (req, res, next) => {
     data.password = password;
 
     const result = await User.create(data);
-    console.log(result);
     const token = getToken({ id: result._id, email: data.email });
     res.status(200).send({ success: true, token });
   } catch (error) {

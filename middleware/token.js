@@ -8,7 +8,6 @@ exports.getToken = (data, expire) => {
   });
 };
 
-
 // Verify A Token
 exports.verifyToken = async (req, res, next) => {
   try {

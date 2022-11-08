@@ -22,6 +22,18 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    images: [
+      {
+        filename: {
+          type: String,
+          required: true,
+        },
+        size: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
