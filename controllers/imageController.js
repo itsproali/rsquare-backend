@@ -76,7 +76,6 @@ exports.getImage = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId, { images: 1 });
-    console.log(user.images);
     res.status(200).send({ success: true, data: user.images });
   } catch (error) {
     next(error);
