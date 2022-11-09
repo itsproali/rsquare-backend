@@ -15,7 +15,7 @@ app.use("/images", express.static(__dirname + "/images/"));
 
 // Default Route
 app.get("/", (req, res) => {
-  res.send("Welcome to MVC Pattern Server..!");
+  res.send("Welcome to Rsquare Server..!");
 });
 
 // Not Found Route

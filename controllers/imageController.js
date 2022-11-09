@@ -46,24 +46,16 @@ exports.deleteImage = async (req, res, next) => {
     const checked_image = req.body;
     const userId = req.user.id;
 
-    // const user = await User.findById(userId, {
-    //   "images.path": 1,
-    //   "images._id": 1,
-    // });
+    const checked_ids = [];
 
-    // const userImages = user.images
-
-    // const toRemove = new Set(checked_image);
-    // const filter = userImages.filter((item) => toRemove.has(item._id));
-    // console.log("User: ", user, "Filter", filter);
-    // const files = images.filter(file => file.path === checked_image)
-    // Delete from the server
-    // images.forEach((item) => console.log(`/images/${item.path}`));
-    // fs.existsSync("/images/ " + item.path) && fs.unlinkSync("/images/" + item.path)
+    checked_image.forEach((item) => {
+      checked_ids.push(item.id);
+      fs.unlinkSync(`./images/${item.path}`);
+    });
 
     const result = await User.updateOne(
       { _id: userId },
-      { $pull: { images: { _id: { $in: checked_image } } } }
+      { $pull: { images: { _id: { $in: checked_ids } } } }
     );
 
     if (!result) {
@@ -75,6 +67,17 @@ exports.deleteImage = async (req, res, next) => {
     res
       .status(200)
       .send({ success: true, message: "Images deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getImage = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId, { images: 1 });
+    console.log(user.images);
+    res.status(200).send({ success: true, data: user.images });
   } catch (error) {
     next(error);
   }
