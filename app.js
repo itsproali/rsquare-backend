@@ -8,15 +8,15 @@ const imageRoute = require("./routes/imageRoute");
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/user", userRoute);
-app.use("/image", imageRoute);
-app.use("/images", express.static(__dirname + "/images/"));
-
 // Default Route
 app.get("/", (req, res) => {
   res.send("Welcome to Rsquare Server..!");
 });
+
+// Routes
+app.use("/user", userRoute);
+app.use("/image", imageRoute);
+app.use("/images", express.static(__dirname + "/images/"));
 
 // Not Found Route
 app.get("*", (req, res) => {
