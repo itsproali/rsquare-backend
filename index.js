@@ -1,8 +1,6 @@
-const express = require("express");
 require("colors");
 require("dotenv").config();
 const dbConnect = require("./utilities/dbConnect");
-const errorHandler = require("./middleware/errorHandler");
 const port = process.env.PORT || 5000;
 const app = require("./app");
 
@@ -10,9 +8,14 @@ const app = require("./app");
 dbConnect();
 
 // Server
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Rsquare Server Running on: ${port}`.blue.bold);
 });
 
-// Handle Error
-app.use(errorHandler);
+// unhandled promise rejections
+process.on("unhandledRejection", (err) => {
+  console.log("UNHANDLED REJECTION 💥", err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});

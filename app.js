@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
 const userRoute = require("./routes/userRoute");
 const imageRoute = require("./routes/imageRoute");
+const errorHandler = require("./middleware/errorHandler");
+const app = express();
 
 // Middleware
 app.use(cors());
@@ -22,5 +23,8 @@ app.use("/images", express.static(__dirname + "/images/"));
 app.get("*", (req, res) => {
   res.sendStatus(404).send({ message: "Route Not Found" });
 });
+
+// Handle Error
+app.use(errorHandler);
 
 module.exports = app;
