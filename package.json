@@ -4,7 +4,7 @@
   "description": "Backend Template for MVC Pattern Project who use Express JS, MongoDB, Mongoose etc.",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node index.js",
