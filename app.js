@@ -3,7 +3,11 @@ const cors = require("cors");
 const userRoute = require("./routes/userRoute");
 const imageRoute = require("./routes/imageRoute");
 const errorHandler = require("./middleware/errorHandler");
+const dbConnect = require("./utilities/dbConnect");
 const app = express();
+
+// Connect to Database
+dbConnect();
 
 // Middleware
 app.use(cors());
